@@ -24,3 +24,22 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+ext.versions = [
+        "compileSdk" : 29,
+        "minSdk"     : 21,
+        "targetSdk"  : 29,
+        "truth"      : "1.0.1",
+        "recyclerview" : "1.1.0",
+        "navigation" : "2.3.0"
+]
+
+
+ext.deps = [
+        "androidx": [
+                "recyclerview" : "androidx.recyclerview:recyclerview:${versions.recyclerview}",
+                "navigation" : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
+        ],
+        "truth" : "com.google.truth:truth:${versions.truth}"
+]
