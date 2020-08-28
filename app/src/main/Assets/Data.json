@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Exclusive 20% Off next-gen Quantum headsets",
+    "description": "Sound is survival: win with Quantum surround sound, flawless connectivity custom colours and more.",
+    "entity": "JBL"
+  },
+  {
+    "id": 2,
+    "title": "Get 35% Student Discount",
+    "description": "Plus save an extra 30% off on Outlet items. Hurry Limited Time Only!",
+    "entity": "Reebok"
+  },
+  {
+    "id": 3,
+    "title": "22% Student Discount",
+    "description": "Head to LOOKFANTASTIC - the ultimate destination for your beauty needs!",
+    "entity": "LOOKFANTASTIC"
+  },
+  {
+    "id": 4,
+    "title": "22% Student Discount",
+    "description": "Head to LOOKFANTASTIC - the ultimate destination for your beauty needs!",
+    "entity": "LOOKFANTASTIC"
+  },
+  {
+    "id": 5,
+    "title": "Up to 50% Off!",
+    "description": "Plus use your UNiDAYS Discount for an extra 10% off",
+    "entity": "Topman"
+  },
+  {
+    "id": 6,
+    "title": "6 Months Free Prime!",
+    "description": "Enjoy 6 Months Free Amazon Prime then 50% Off when you sign up through UNiDAYS",
+    "entity": "Amazon"
+  },
+  {
+    "id": 7,
+    "title": "Get 20% Off when you spend £85 and over!",
+    "description": "It's Bank Holiday! Enjoy 20% Off on all your faves when you spend £85.",
+    "entity": "Fresh Cosmetics"
+  },
+  {
+    "id": 8,
+    "title": "10% Student Discount",
+    "description": "Make your mark.",
+    "entity": "Dr Martons"
+  },
+  {
+    "id": 9,
+    "title": "15% off Mobile Devices, Tablets and Wearables!",
+    "description": "Now including the new Galaxy S20 Series and Galaxy Z Flip!",
+    "entity": "Sumsung"
+  }
+]

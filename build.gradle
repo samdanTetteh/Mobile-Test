@@ -32,14 +32,26 @@ ext.versions = [
         "targetSdk"  : 29,
         "truth"      : "1.0.1",
         "recyclerview" : "1.1.0",
-        "navigation" : "2.3.0"
+        "navigation" : "2.3.0",
+        "room" : "2.2.5",
+        "glide" : "4.11.0"
+
 ]
 
 
 ext.deps = [
         "androidx": [
                 "recyclerview" : "androidx.recyclerview:recyclerview:${versions.recyclerview}",
-                "navigation" : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
+                "navigation" : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
+                "room" : [
+                        "runtime" : "androidx.room:room-runtime:${versions.room}",
+                        "ktx" : "androidx.room:room-ktx:${versions.room}",
+                        "compiler" : "androidx.room:room-compiler:${versions.room}"
+                ]
+        ],
+        "glide" : [
+                "glide" : "com.github.bumptech.glide:glide:${versions.glide}",
+                "compiler" : "com.github.bumptech.glide:compiler:${versions.glide}"
         ],
         "truth" : "com.google.truth:truth:${versions.truth}"
 ]
