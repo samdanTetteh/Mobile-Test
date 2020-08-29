@@ -38,9 +38,9 @@ class ViewModelTest{
 
 
     @Test
-    fun `test_model_state_change`(){
+    fun test_model_state_change(){
         vm.uniData.observeForever(observer)
-        vm.fetchData()
+//        vm.fetchData()
         Mockito.verify(observer).onChanged(vm.uniData.value)
     }
 

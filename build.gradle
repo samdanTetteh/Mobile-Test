@@ -9,6 +9,10 @@ buildscript {
         classpath "com.android.tools.build:gradle:4.0.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
+        //Navigation safe args dependency
+        def nav_version = "2.3.0"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -40,7 +44,10 @@ ext.versions = [
         "test" : "1.2.0",
         "core" : "2.0.0",
         "mockito_core" : "2.7.22",
-        "mockito_android" : "2.25.0"
+        "mockito_android" : "2.25.0",
+        "navigation" : "2.3.0-beta01",
+        "fragment" : "1.1.0-alpha01",
+        "fragment_testing" : "1.2.5"
 ]
 
 
@@ -49,8 +56,10 @@ ext.deps = [
                 "recyclerview" : "androidx.recyclerview:recyclerview:${versions.recyclerview}",
                 "navigation" : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
                 "viewmodel" :  "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.life_cycle}",
-                "live_date" : "androidx.lifecycle:lifecycle-livedata-ktx:${versions.life_cycle}",
+                "live_data" : "androidx.lifecycle:lifecycle-livedata-ktx:${versions.life_cycle}",
                 "testing" : "androidx.arch.core:core-testing:${versions.core}",
+                "fragment" : "androidx.fragment:fragment:${versions.fragment}",
+                "fragment_testing" : "androidx.fragment:fragment-testing:${versions.fragment_testing}",
                 "test" : [
                        "runner" : "androidx.test:runner:${versions.test}",
                         "rules" : "androidx.test:rules:${versions.test}"
@@ -59,7 +68,12 @@ ext.deps = [
                         "runtime" : "androidx.room:room-runtime:${versions.room}",
                         "ktx" : "androidx.room:room-ktx:${versions.room}",
                         "compiler" : "androidx.room:room-compiler:${versions.room}"
+                ],
+                "navigation" : [
+                        "fragment" : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
+                        "ktx" : "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
                 ]
+
         ],
         "glide" : [
                 "glide" : "com.github.bumptech.glide:glide:${versions.glide}",
