@@ -1,5 +1,7 @@
 package com.ijikod.uni.data.Room
 
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.ijikod.uni.data.Model.UniModel
@@ -7,7 +9,11 @@ import com.ijikod.uni.data.Model.UniModel
 /**
  * Data access object for querying local database data
  * **/
+@Dao
 interface UniDao {
+
+    @Query("Select * from unidata")
+    fun getAllData() :List<UniModel>
 
     /**
      * save single [UniModel] to database

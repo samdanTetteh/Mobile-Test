@@ -14,9 +14,11 @@ class UniApplication : Application() {
         appContext = applicationContext
     }
 
-
     companion object {
          // singleton access to application context
          lateinit var appContext : Context
     }
+
+
+
 }
