@@ -24,7 +24,7 @@ abstract class UniDatabase : RoomDatabase(){
         /**
          * Singleton implementation of room database to avoid creation of several instances
          * **/
-        fun getDatabase(context: Context): UniDatabase {
+        fun getDatabaseInstance(context: Context): UniDatabase {
             if (INSTANCE == null) {
                 synchronized(this){
                     INSTANCE = Room.databaseBuilder(

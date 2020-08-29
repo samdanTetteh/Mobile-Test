@@ -2,13 +2,10 @@ package com.ijikod.uni.data
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
-import com.ijikod.uni.Utilities.Resource
 import com.ijikod.uni.data.DataSource.Api
 import com.ijikod.uni.data.Model.UniModel
 import com.ijikod.uni.data.Room.UniDatabase
-import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
-import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -34,7 +31,7 @@ class RepositoryTest {
     fun setUp() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         api = Api(context)
-        database = UniDatabase.getDatabase(context)
+        database = UniDatabase.getDatabaseInstance(context)
         appRepository = Repository(api, database)
     }
 

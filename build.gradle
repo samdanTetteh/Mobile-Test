@@ -35,7 +35,12 @@ ext.versions = [
         "navigation" : "2.3.0",
         "room" : "2.2.5",
         "glide" : "4.11.0",
-        "moshi" : "1.8.0"
+        "moshi" : "1.8.0",
+        "life_cycle" : "2.2.0",
+        "test" : "1.2.0",
+        "core" : "2.0.0",
+        "mockito_core" : "2.7.22",
+        "mockito_android" : "2.25.0"
 ]
 
 
@@ -43,6 +48,13 @@ ext.deps = [
         "androidx": [
                 "recyclerview" : "androidx.recyclerview:recyclerview:${versions.recyclerview}",
                 "navigation" : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
+                "viewmodel" :  "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.life_cycle}",
+                "live_date" : "androidx.lifecycle:lifecycle-livedata-ktx:${versions.life_cycle}",
+                "testing" : "androidx.arch.core:core-testing:${versions.core}",
+                "test" : [
+                       "runner" : "androidx.test:runner:${versions.test}",
+                        "rules" : "androidx.test:rules:${versions.test}"
+                ],
                 "room" : [
                         "runtime" : "androidx.room:room-runtime:${versions.room}",
                         "ktx" : "androidx.room:room-ktx:${versions.room}",
@@ -52,6 +64,10 @@ ext.deps = [
         "glide" : [
                 "glide" : "com.github.bumptech.glide:glide:${versions.glide}",
                 "compiler" : "com.github.bumptech.glide:compiler:${versions.glide}"
+        ],
+        "mockito" : [
+                "core" : "org.mockito:mockito-core:${versions.mockito_core}",
+                "android" : "org.mockito:mockito-core:${versions.mockito_android}"
         ],
         "truth" : "com.google.truth:truth:${versions.truth}",
         "moshi" : "com.squareup.moshi:moshi-kotlin:${versions.moshi}"
