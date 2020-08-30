@@ -11,7 +11,6 @@ import androidx.room.PrimaryKey
 data class UniModel(
     @PrimaryKey(autoGenerate = true)
     val id : Int = 0,
-    val title : String,
     val description : String,
     val entity : String
 )

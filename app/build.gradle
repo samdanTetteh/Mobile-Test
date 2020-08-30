@@ -87,4 +87,8 @@ dependencies {
     // Navigation
     implementation deps.androidx.navigation.fragment
     implementation deps.androidx.navigation.ktx
+
+    // Espresso
+    androidTestImplementation deps.androidx.espresso.core
+    androidTestImplementation deps.androidx.espresso.contrib
 }

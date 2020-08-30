@@ -14,7 +14,7 @@ class ViewModelFactory(private val repository: Repository) : ViewModelProvider.F
             return com.ijikod.uni.presentation.FeedViewModel(repository) as T
         }else if (modelClass.isAssignableFrom(com.ijikod.uni.presentation.ContentViewModel::class.java)){
             @Suppress("UNCHECKED_CAST")
-            return com.ijikod.uni.presentation.ContentViewModel() as T
+            return com.ijikod.uni.presentation.ContentViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

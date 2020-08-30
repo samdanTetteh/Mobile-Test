@@ -22,7 +22,6 @@ class RepositoryTest {
 
     private val fakeUniModel  = UniModel(
         id = 8,
-        title = "10% Student Discount",
         description = "Make your mark.",
         entity = "Dr Martons"
     )

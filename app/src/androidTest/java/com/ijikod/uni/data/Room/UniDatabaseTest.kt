@@ -24,7 +24,6 @@ class UniDatabaseTest{
 
     private val fakeUniModel  = UniModel(
         id = 2,
-        title = "Get 35% Student Discount",
         description = "Plus save an extra 30% off on Outlet items. Hurry Limited Time Only!",
         entity = "Reebok"
     )
@@ -46,7 +45,6 @@ class UniDatabaseTest{
         }
         dao.insertAllData(dataList)
         val savedData = dao.getAllData()[0].apply {
-            assertThat(title, equalTo("Get 35% Student Discount"))
             assertThat(description, equalTo("Plus save an extra 30% off on Outlet items. Hurry Limited Time Only!"))
             assertThat(entity, equalTo("Reebok"))
         }

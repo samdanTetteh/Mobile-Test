@@ -37,7 +37,6 @@ class ContentFeedFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        feedViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(FeedViewModel::class.java)
 
     }
 
@@ -48,6 +47,7 @@ class ContentFeedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding : ContentFeedFragmentLayoutBinding = ContentFeedFragmentLayoutBinding.inflate(inflater, container, false)
+        feedViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(FeedViewModel::class.java)
 
         initScreenItems(binding)
         initSubscribers()
@@ -66,7 +66,7 @@ class ContentFeedFragment : Fragment() {
 
         // Show empty content screen from add button
         fab.setOnClickListener {
-            showContentScreen(UniModel(title = "", description = "", entity = ""))
+            showContentScreen(UniModel(description = "", entity = ""))
         }
     }
 
@@ -120,7 +120,9 @@ class ContentFeedFragment : Fragment() {
         progressBar.visibility = View.GONE
     }
 
-
+    /**
+     * Navigate to content screen with selected [UniModel] data item
+     */
     private fun showContentScreen(dataItem: UniModel){
         val contentVM = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(ContentViewModel::class.java)
         contentVM.setSelectedData(dataItem)

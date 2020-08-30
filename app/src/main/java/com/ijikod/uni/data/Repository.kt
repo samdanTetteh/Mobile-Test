@@ -41,6 +41,15 @@ class Repository(private val api: Api, database: UniDatabase) {
     }
 
     /**
+     * Insert Data into local database
+     * **/
+    fun insertDataItem(dataItem : UniModel){
+        CoroutineScope(Dispatchers.IO).launch {
+            dao.insertData(dataItem)
+        }
+    }
+
+    /**
      * Load data from json file and save data to sql database
      * **/
     @WorkerThread

@@ -17,13 +17,11 @@ class DaoTest {
     private lateinit var appDatabase: UniDatabase
 
     private val fakeUniModel_1  = UniModel(
-        title = "Get 35% Student Discount",
         description = "Plus save an extra 30% off on Outlet items. Hurry Limited Time Only!",
         entity = "Reebok"
     )
 
     private val fakeUniModel_2  = UniModel(
-        title = "22% Student Discount",
         description = "Head to LOOKFANTASTIC - the ultimate destination for your beauty needs!",
         entity = "LOOKFANTASTIC"
     )

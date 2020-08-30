@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.ijikod.uni.R
+import com.ijikod.uni.Utilities.hideKeyboard
 import com.ijikod.uni.databinding.ContentLayoutBinding
 import com.ijikod.uni.di.Injection
 import com.ijikod.uni.presentation.ContentViewModel
@@ -40,11 +42,18 @@ class ContentFragment: Fragment() {
     }
 
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.save_data -> {
                 if (contentViewModel.isFormValid()){
+                    contentViewModel.saveData()
 
+                    // Hide keyboard is still displaying
+                    hideKeyboard()
+
+                    // navigate back to feed screen
+                    findNavController().navigateUp()
                 }
             }
 

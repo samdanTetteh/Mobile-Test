@@ -46,7 +46,8 @@ ext.versions = [
         "mockito_android" : "2.25.0",
         "navigation" : "2.3.0-beta01",
         "fragment" : "1.1.0-alpha01",
-        "fragment_testing" : "1.2.5"
+        "fragment_testing" : "1.2.5",
+        "espresso" : "3.2.0"
 ]
 
 
@@ -70,6 +71,11 @@ ext.deps = [
                 "navigation" : [
                         "fragment" : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
                         "ktx" : "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+                ],
+                "espresso" : [
+                        "core" : "androidx.test.espresso:espresso-core:${versions.espresso}",
+                        "contrib" : "androidx.test.espresso:espresso-contrib:${versions.espresso}"
+
                 ]
 
         ],

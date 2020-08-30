@@ -3,6 +3,7 @@ package com.ijikod.uni.data.Room
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.ijikod.uni.data.Model.UniModel
 
@@ -17,8 +18,9 @@ interface UniDao {
 
     /**
      * save single [UniModel] to database
+     * [OnConflictStrategy] here will replace data if exists already
      * **/
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertData(data : UniModel)
 
     /**
