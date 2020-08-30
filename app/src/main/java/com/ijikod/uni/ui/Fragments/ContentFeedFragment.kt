@@ -33,10 +33,12 @@ class ContentFeedFragment : Fragment() {
     private lateinit var adapter: DataAdapter
     private lateinit var fab: FloatingActionButton
 
+    private var adapterList = mutableListOf<UniModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        feedViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(FeedViewModel::class.java)
 
     }
 
@@ -47,11 +49,12 @@ class ContentFeedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding : ContentFeedFragmentLayoutBinding = ContentFeedFragmentLayoutBinding.inflate(inflater, container, false)
-        feedViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(FeedViewModel::class.java)
+        val view = binding.root
+
 
         initScreenItems(binding)
         initSubscribers()
-        return binding.root
+        return view
     }
 
 
@@ -64,6 +67,9 @@ class ContentFeedFragment : Fragment() {
         retryButton = binding.retryButton
         fab = binding.fab
 
+        adapter = DataAdapter(showContent = { selectedData -> showContentScreen(selectedData) })
+        recyclerView.adapter = adapter
+
         // Show empty content screen from add button
         fab.setOnClickListener {
             showContentScreen(UniModel(description = "", entity = ""))
@@ -75,20 +81,16 @@ class ContentFeedFragment : Fragment() {
      * Observing data changes from view model and showing in recycler view
      * **/
     private fun initSubscribers(){
-        feedViewModel.uniData.observe(viewLifecycleOwner, Observer {
+        feedViewModel.data()
+        feedViewModel.data.observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading -> {
                     showLoading()
                 }
 
                 is Resource.Success -> {
-                    adapter = it.data?.let { it1 ->
-                        DataAdapter(it1, showContent = { selectedData ->
-                            showContentScreen(selectedData)
-                        })
-                    }!!
-
-                    recyclerView.adapter = adapter
+                    // Setting list data to data recycler view adapter
+                    adapter.setDataSet(it.data!!)
                     showList()
                 }
 

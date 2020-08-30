@@ -36,7 +36,7 @@ class RepositoryTest {
 
 
     @Test
-    fun `check_read_data_from_api`(){
+    suspend fun `check_read_data_from_api`(){
         val uniData  = appRepository.getDataFromServer()
         assertThat(uniData[1] , CoreMatchers.equalTo(fakeUniModel))
     }

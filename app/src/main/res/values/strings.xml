@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UNIDAYS</string>
+    <string name="app_name">Mobile Test</string>
     <string name="retry">Oops...retry</string>
     <string name="item_image_txt">Item Image</string>
 
@@ -8,4 +8,8 @@
     <string name="save_txt">upload</string>
     <string name="title_error">Title must not be empty and should be more than 3 characters</string>
     <string name="body_error">Body text should not be empty</string>
+
+    <string name="content_feed_title">Content Feed</string>
+    <string name="add_content_title">Add Content</string>
+
 </resources>

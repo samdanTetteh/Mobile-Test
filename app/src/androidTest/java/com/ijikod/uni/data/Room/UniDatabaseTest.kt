@@ -5,6 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ijikod.uni.data.Model.UniModel
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
@@ -38,17 +39,18 @@ class UniDatabaseTest{
 
     @Test
     @Throws(Exception::class)
-    fun `check_saved_data`() {
+     fun `check_saved_data`() {
         val uniData: UniModel = fakeUniModel
         val dataList = mutableListOf<UniModel>().apply {
             add(uniData)
         }
-        dao.insertAllData(dataList)
-        val savedData = dao.getAllData()[0].apply {
-            assertThat(description, equalTo("Plus save an extra 30% off on Outlet items. Hurry Limited Time Only!"))
-            assertThat(entity, equalTo("Reebok"))
+        runBlocking {
+            dao.insertAllData(dataList)
+            dao.getAllData()[0].apply {
+                assertThat(description, equalTo("Plus save an extra 30% off on Outlet items. Hurry Limited Time Only!"))
+                assertThat(entity, equalTo("Reebok"))
+            }
         }
-
     }
 
     @After

@@ -2,15 +2,19 @@ package com.ijikod.uni.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ijikod.uni.di.Injection
 import com.ijikod.uni.TestUtils.Mokito
 import com.ijikod.uni.Utilities.Resource
 import com.ijikod.uni.data.Model.UniModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.TestWatcher
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
@@ -20,6 +24,7 @@ import org.mockito.Mockito
  * **/
 @RunWith(AndroidJUnit4::class)
 class FeedViewModelTest{
+
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -42,17 +47,39 @@ class FeedViewModelTest{
 
     @Test
     fun test_model_state_change(){
-        vm.uniData.observeForever(observer)
-        vm.fetchData()
-        Mockito.verify(observer).onChanged(vm.uniData.value)
+
+        vm.data.observeForever(observer)
+
+        runBlocking {
+            vm.data()
+            Mockito.verify(observer).onChanged(vm.data.value)
+        }
     }
 
-    @Test
-    fun `test_for_return_values`(){
-        vm.uniData.observeForever(observer)
-        vm.fetchData()
+//    @Test
+//    fun `test_for_return_values`(){
+//        vm.data.observeForever(observer)
+//        vm.data()
+//
+//        vm.data.value?.data?.isNotEmpty()?.let { assert(it) }
+//    }
 
-        vm.uniData.value?.data?.isNotEmpty()?.let { assert(it) }
-    }
 
 }
+
+//@ExperimentalCoroutinesApi
+//class CoroutinesTestRule(
+//    val testDispatcher: TestCoroutineDispatcher = Te
+//) : TestWatcher() {
+//
+//    override fun starting(description: Description?) {
+//        super.starting(description)
+//        Dispatchers.setMain(testDispatcher)
+//    }
+//
+//    override fun finished(description: Description?) {
+//        super.finished(description)
+//        Dispatchers.resetMain()
+//        testDispatcher.cleanupTestCoroutines()
+//    }
+//}

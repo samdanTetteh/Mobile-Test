@@ -8,6 +8,8 @@ import com.ijikod.uni.data.Repository
 
 class ContentViewModel(val repository: Repository) : ViewModel() {
 
+    val selectedDataItem = MutableLiveData<UniModel>()
+
     val title = MutableLiveData<String>()
 
     val body = MutableLiveData<String>()
@@ -36,6 +38,7 @@ class ContentViewModel(val repository: Repository) : ViewModel() {
      * **/
     fun setSelectedData(dataItem: UniModel){
         formErrors.clear()
+        selectedDataItem.value = dataItem
         title.value = dataItem.entity
         body.value = dataItem.description
     }
@@ -45,8 +48,14 @@ class ContentViewModel(val repository: Repository) : ViewModel() {
      * Saving Data
      * **/
     fun saveData(){
-        val data = UniModel(entity = title.value!!, description = body.value!!)
-        repository.insertDataItem(data)
+        val data = selectedDataItem.value
+        data?.let {
+            it.entity = title.value.toString()
+            it.description = body.value.toString()
+        }
+        if (data != null) {
+            repository.insertDataItem(data)
+        }
     }
 
 }

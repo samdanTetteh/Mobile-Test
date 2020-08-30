@@ -16,28 +16,28 @@ import java.lang.Exception
  * **/
 class Repository(private val api: Api, database: UniDatabase) {
 
-    val uniDataList = MutableLiveData<Resource<List<UniModel>>>()
-
+    // Handle to database
     private val dao = database.dao()
 
 
     /**
      * Ensure single source of truth data
      * **/
-    fun getData(){
-        CoroutineScope(Dispatchers.IO).launch {
-            uniDataList.postValue(Resource.Loading())
-            val data = dao.getAllData()
-            if (data.isEmpty()){
-                try {
-                    uniDataList.postValue(Resource.Success(getDataFromServer()))
-                }catch (exception : Exception){
-                    uniDataList.postValue(Resource.Error("Error: ${exception.message}"))
-                }
-            }else{
-                uniDataList.postValue(Resource.Success(data))
-            }
-        }
+    suspend fun getData(): Resource<List<UniModel>> {
+        val uniDataList = MutableLiveData<Resource<List<UniModel>>>()
+        uniDataList.postValue(Resource.Loading())
+        val data = dao.getAllData()
+         if (data.isEmpty()){
+             try {
+                 uniDataList.value = Resource.Success(getDataFromServer())
+             }catch (exception : Exception){
+                 uniDataList.value = Resource.Error("Error: ${exception.message}")
+             }
+         }else{
+                uniDataList.value = Resource.Success(data)
+         }
+
+        return uniDataList.value!!
     }
 
     /**
@@ -53,7 +53,7 @@ class Repository(private val api: Api, database: UniDatabase) {
      * Load data from json file and save data to sql database
      * **/
     @WorkerThread
-    fun getDataFromServer() : List<UniModel>{
+    suspend fun getDataFromServer() : List<UniModel>{
         val data = api.remoteData
         dao.deleteAll()
         dao.insertAllData(data)

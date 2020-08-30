@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ijikod.uni.data.Model.UniModel
 import com.ijikod.uni.databinding.ListItemLayoutBinding
 
-class DataAdapter(val data : List<UniModel>, val showContent : (dataItem : UniModel) -> Unit) : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+class DataAdapter(val showContent : (dataItem : UniModel) -> Unit) : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
+    private var data  = listOf<UniModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ListItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -21,6 +22,11 @@ class DataAdapter(val data : List<UniModel>, val showContent : (dataItem : UniMo
         with(holder){
             binding(dataItem)
         }
+    }
+
+    fun setDataSet(listData : List<UniModel>){
+        data = listData
+        notifyDataSetChanged()
     }
 
 
