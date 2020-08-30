@@ -1,8 +1,8 @@
 package com.ijikod.uni.ui.Fragments
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,18 +11,18 @@ import androidx.lifecycle.ViewModelProvider
 import com.ijikod.uni.R
 import com.ijikod.uni.databinding.ContentLayoutBinding
 import com.ijikod.uni.di.Injection
-import com.ijikod.uni.presentation.ViewModel
+import com.ijikod.uni.presentation.ContentViewModel
 
 /** Fragment to show content data **/
 class ContentFragment: Fragment() {
 
-    lateinit var viewModel: ViewModel
+    lateinit var contentViewModel: ContentViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(ViewModel::class.java)
+        contentViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(ContentViewModel::class.java)
         setHasOptionsMenu(true)
     }
 
@@ -34,8 +34,21 @@ class ContentFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding : ContentLayoutBinding = DataBindingUtil.inflate(inflater, R.layout.content_layout, container,false)
-        binding.vm = viewModel
+        binding.vm = contentViewModel
 
         return binding.root
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.save_data -> {
+                if (contentViewModel.isFormValid()){
+
+                }
+            }
+
+        }
+        return true
     }
 }

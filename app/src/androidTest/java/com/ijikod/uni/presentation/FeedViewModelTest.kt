@@ -16,27 +16,27 @@ import org.mockito.Mock
 import org.mockito.Mockito
 
 /**
- * Test class for [ViewModel]
+ * Test class for [FeedViewModel]
  * **/
 @RunWith(AndroidJUnit4::class)
-class ViewModelTest{
+class FeedViewModelTest{
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var vm : ViewModel
+    lateinit var vm : FeedViewModel
 
 
     private val observer: Observer<Resource<List<UniModel>>> = Mokito().mock()
 
 
     /**
-     * Initialising [ViewModel] for tests
+     * Initialising [FeedViewModel] for tests
      * **/
     @Before
     fun setUp(){
-        vm = ViewModel(Injection.provideRepository(ApplicationProvider.getApplicationContext()))
+        vm = FeedViewModel(Injection.provideRepository(ApplicationProvider.getApplicationContext()))
     }
 
 

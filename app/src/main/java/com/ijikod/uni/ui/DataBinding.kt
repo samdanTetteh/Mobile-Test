@@ -1,18 +1,30 @@
 package com.ijikod.uni.ui
 
-import android.graphics.Typeface
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import com.google.android.material.textfield.TextInputEditText
-import com.ijikod.uni.data.Model.UniModel
+import com.google.android.material.textfield.TextInputLayout
+import com.ijikod.uni.R
 
-class DataBinding {
 
-    /**
-     * A [BindingAdapter] to show HTML text
-     * **/
-    @BindingAdapter("app:titleTxt")
-    fun loadText(textWidget: TextInputEditText, text: String){
-        textWidget.setText(text)
-        textWidget.setTypeface(null, Typeface.BOLD)
-    }
+/**
+ * A [BindingAdapter] to show error validation msgs
+ * **/
+@BindingAdapter("app:titleErrorText")
+fun setTitleErrorMessage(view: TextInputLayout, errorMessage: String) {
+    if (errorMessage.isNotEmpty())
+        view.error = view.context.getString(R.string.title_error)
+    else
+        view.error = errorMessage
+}
+
+
+/**
+ * A [BindingAdapter] to show error validation msgs
+ * **/
+@BindingAdapter("app:descErrorText")
+fun setDescErrorMessage(view: TextInputLayout, errorMessage: String) {
+    if (errorMessage.isNotEmpty())
+        view.error = view.context.getString(R.string.body_error)
+    else
+        view.error = errorMessage
 }

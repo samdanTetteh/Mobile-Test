@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.ijikod.uni.presentation.FormErrors" />
         <variable
             name="vm"
-            type="com.ijikod.uni.presentation.ViewModel" />
+            type="com.ijikod.uni.presentation.ContentViewModel" />
     </data>
 
 
@@ -28,8 +29,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
-                android:hint="@string/enter_entity_txt"
+                android:hint="@string/enter_title_txt"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:titleErrorText='@{vm.formErrors.contains(FormErrors.INVALID_TITLE) ? "Error" : ""}'
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -39,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapSentences"
                     android:singleLine="true"
-                    android:text="@{vm.selectedItem.entity}"
+                    android:text="@={vm.title}"
                     android:textSize="18sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -50,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:hint="@string/enter_desc_txt"
+                app:descErrorText='@{vm.formErrors.contains(FormErrors.MISSING_DESC) ? "Error" : ""}'
                 app:layout_constraintEnd_toEndOf="@+id/textInputEntityLayout"
                 app:layout_constraintStart_toStartOf="@+id/textInputEntityLayout"
                 app:layout_constraintTop_toBottomOf="@+id/textInputEntityLayout">
@@ -62,7 +65,7 @@
                     android:inputType="textCapSentences|textMultiLine"
                     android:lines="5"
                     android:scrollHorizontally="false"
-                    android:text="@{vm.selectedItem.description}"
+                    android:text="@={vm.body}"
                     android:textSize="18sp" />
 
             </com.google.android.material.textfield.TextInputLayout>

@@ -12,24 +12,19 @@ import kotlinx.coroutines.launch
 /**
  * [ViewModel] class that serves as a bridge between view and repository
  * **/
-class ViewModel (private val repository: Repository): ViewModel(){
+class FeedViewModel (private val repository: Repository): ViewModel(){
 
     val uniData = repository.uniDataList
 
-    val selectedItem : MutableLiveData<UniModel> = MutableLiveData<UniModel>()
 
     init {
         fetchData()
     }
 
+    /**
+     * Loa data from local database
+     * **/
      fun fetchData(){
         repository.getData()
-    }
-
-    /**
-     * Shared [UniModel] used by content fragment
-     * **/
-    fun setSelectedItem(data: UniModel){
-        selectedItem.value = data
     }
 }

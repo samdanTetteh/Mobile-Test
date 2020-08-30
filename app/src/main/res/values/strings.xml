@@ -4,7 +4,8 @@
     <string name="item_image_txt">Item Image</string>
 
     <string name="enter_title_txt">Enter title</string>
-    <string name="enter_desc_txt">Enter Description</string>
+    <string name="enter_desc_txt">Enter body text</string>
     <string name="save_txt">upload</string>
-    <string name="enter_entity_txt">Enter Entity</string>
+    <string name="title_error">Title must not be empty and should be more than 5 characters</string>
+    <string name="body_error">Body text should not be empty</string>
 </resources>
