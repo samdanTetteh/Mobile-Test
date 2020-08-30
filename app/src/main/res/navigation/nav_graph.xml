@@ -6,5 +6,13 @@
     <fragment
         android:id="@+id/contentFeedFragment"
         android:name="com.ijikod.uni.ui.Fragments.ContentFeedFragment"
-        android:label="@string/application_title" />
+        android:label="@string/app_name">
+        <action
+            android:id="@+id/action_contentFeedFragment_to_contentFragment"
+            app:destination="@id/contentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contentFragment"
+        android:name="com.ijikod.uni.ui.Fragments.ContentFragment"
+        android:label="@string/app_name" />
 </navigation>

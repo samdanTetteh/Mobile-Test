@@ -29,14 +29,12 @@ class DataAdapter(val data : List<UniModel>, val showContent : (dataItem : UniMo
      * **/
     inner class ViewHolder(itemViewBinding: ListItemLayoutBinding) : RecyclerView.ViewHolder(itemViewBinding.root){
         val entityTxt = itemViewBinding.entityTxt
-        val titleTxt = itemViewBinding.titleTxt
         val descpTxt = itemViewBinding.detailsTxt
         val bgImage = itemViewBinding.cardBgImg
 
 
         fun binding(dataItem: UniModel){
             entityTxt.text = dataItem.entity
-            titleTxt.text = dataItem.title
             descpTxt.text = dataItem.description
 
             //Navigate to details screen

@@ -36,7 +36,6 @@ ext.versions = [
         "targetSdk"  : 29,
         "truth"      : "1.0.1",
         "recyclerview" : "1.1.0",
-        "navigation" : "2.3.0",
         "room" : "2.2.5",
         "glide" : "4.11.0",
         "moshi" : "1.8.0",
@@ -54,7 +53,6 @@ ext.versions = [
 ext.deps = [
         "androidx": [
                 "recyclerview" : "androidx.recyclerview:recyclerview:${versions.recyclerview}",
-                "navigation" : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
                 "viewmodel" :  "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.life_cycle}",
                 "live_data" : "androidx.lifecycle:lifecycle-livedata-ktx:${versions.life_cycle}",
                 "testing" : "androidx.arch.core:core-testing:${versions.core}",
@@ -81,7 +79,7 @@ ext.deps = [
         ],
         "mockito" : [
                 "core" : "org.mockito:mockito-core:${versions.mockito_core}",
-                "android" : "org.mockito:mockito-core:${versions.mockito_android}"
+                "android" : "org.mockito:mockito-android:${versions.mockito_android}"
         ],
         "truth" : "com.google.truth:truth:${versions.truth}",
         "moshi" : "com.squareup.moshi:moshi-kotlin:${versions.moshi}"

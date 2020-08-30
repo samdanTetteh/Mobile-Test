@@ -21,10 +21,10 @@ class RepositoryTest {
     private lateinit var api : Api
 
     private val fakeUniModel  = UniModel(
-        id = 2,
-        title = "Get 35% Student Discount",
-        description = "Plus save an extra 30% off on Outlet items. Hurry Limited Time Only!",
-        entity = "Reebok"
+        id = 8,
+        title = "10% Student Discount",
+        description = "Make your mark.",
+        entity = "Dr Martons"
     )
 
     @Before

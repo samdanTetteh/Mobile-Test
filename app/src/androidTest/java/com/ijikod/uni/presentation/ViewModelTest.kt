@@ -31,6 +31,9 @@ class ViewModelTest{
     private val observer: Observer<Resource<List<UniModel>>> = Mokito().mock()
 
 
+    /**
+     * Initialising [ViewModel] for tests
+     * **/
     @Before
     fun setUp(){
         vm = ViewModel(Injection.provideRepository(ApplicationProvider.getApplicationContext()))
@@ -40,7 +43,7 @@ class ViewModelTest{
     @Test
     fun test_model_state_change(){
         vm.uniData.observeForever(observer)
-//        vm.fetchData()
+        vm.fetchData()
         Mockito.verify(observer).onChanged(vm.uniData.value)
     }
 

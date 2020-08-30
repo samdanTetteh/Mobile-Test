@@ -12,7 +12,7 @@ import com.ijikod.uni.data.Model.UniModel
 @Dao
 interface UniDao {
 
-    @Query("Select * from unidata")
+    @Query("SELECT * FROM unidata ORDER BY id DESC")
     fun getAllData() :List<UniModel>
 
     /**

@@ -10,7 +10,9 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ijikod.uni.Utilities.Resource
 import com.ijikod.uni.data.Model.UniModel
 import com.ijikod.uni.databinding.ContentFeedFragmentLayoutBinding
@@ -29,6 +31,7 @@ class ContentFeedFragment : Fragment() {
 
     private lateinit var viewModel: ViewModel
     private lateinit var adapter: DataAdapter
+    private lateinit var fab: FloatingActionButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,18 +55,30 @@ class ContentFeedFragment : Fragment() {
     }
 
 
+    /**
+     * Initialise layout views from [ContentFeedFragmentLayoutBinding]
+     * **/
     private fun initScreenItems(binding: ContentFeedFragmentLayoutBinding){
         recyclerView = binding.dataList
         progressBar = binding.progressBar
         retryButton = binding.retryButton
+        fab = binding.fab
+
+        // Show empty content screen from add button
+        fab.setOnClickListener {
+            showContentScreen(UniModel(title = "", description = "", entity = ""))
+        }
     }
 
 
+    /**
+     * Observing data changes from view model and showing in recycler view
+     * **/
     private fun initSubscribers(){
         viewModel.uniData.observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading -> {
-                    progressBar.visibility = View.VISIBLE
+                    showLoading()
                 }
 
                 is Resource.Success -> {
@@ -74,20 +89,41 @@ class ContentFeedFragment : Fragment() {
                     }!!
 
                     recyclerView.adapter = adapter
-                    recyclerView.visibility = View.VISIBLE
-                    progressBar.visibility = View.GONE
+                    showList()
                 }
 
                 is Resource.Error -> {
-                    retryButton.visibility = View.VISIBLE
+                    showErrorBtn()
                 }
             }
-
         })
+    }
+
+    // Show loading on screen
+    private fun showLoading(){
+        progressBar.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
+        retryButton.visibility = View.GONE
+    }
+
+    // Show data in recycler view
+    private fun showList(){
+        recyclerView.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
+        retryButton.visibility = View.GONE
+    }
+
+    // show Error
+    private fun showErrorBtn(){
+        retryButton.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
+        progressBar.visibility = View.GONE
     }
 
 
     private fun showContentScreen(dataItem: UniModel){
-
+        viewModel.setSelectedItem(dataItem)
+        val action = ContentFeedFragmentDirections.actionContentFeedFragmentToContentFragment()
+        findNavController().navigate(action)
     }
 }

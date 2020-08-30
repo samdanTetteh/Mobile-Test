@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion versions.compileSdk
@@ -66,16 +67,17 @@ dependencies {
     // Recycle view
     implementation deps.androidx.recyclerview
 
-    // Truth Asserts
+    // Truth Assertions
     testImplementation deps.truth
 
     // Fragment Tests
-    implementation deps.androidx.fragment
-    debugImplementation deps.androidx.fragment_testing
+//    implementation deps.androidx.fragment
+//    debugImplementation deps.androidx.fragment_testing
 
     // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation deps.androidx.test.runner
     androidTestImplementation deps.androidx.test.rules
+    testImplementation 'androidx.test:core:1.0.0'
 
     // Mockito
     androidTestImplementation deps.mockito.core

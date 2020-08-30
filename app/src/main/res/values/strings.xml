@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">Uni</string>
-    <string name="application_title">UNIDAYS</string>
+    <string name="app_name">UNIDAYS</string>
     <string name="retry">Oops...retry</string>
     <string name="item_image_txt">Item Image</string>
+
+    <string name="enter_title_txt">Enter title</string>
+    <string name="enter_desc_txt">Enter Description</string>
+    <string name="save_txt">upload</string>
+    <string name="enter_entity_txt">Enter Entity</string>
 </resources>
