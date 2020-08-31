@@ -7,12 +7,12 @@
 
 ### Installation 
 *  Clone repository with android Studio
-*  Accept notification to change Android SDK path your sdk local path
+*  Accept notification to change Android SDK path to your sdk local path
 *  Make sure you are on the master branch
 
 
 ### App Architecture 
-[MVVM Architecture](/Images/architecture.png)
+![MVVM Architecture](/Images/architecture.png)
 
 
 ### Implementation Features
