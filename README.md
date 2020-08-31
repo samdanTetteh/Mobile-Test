@@ -1,9 +1,9 @@
 ## Uni - Technical
 
 ### Limitations
-[Android Studio](https://developer.android.com/studio#downloads) 3.2 and above
-Minimum Android SDK version 21
-Kotlin Version 1.3.72 and above
+1. [Android Studio](https://developer.android.com/studio#downloads) 3.2 and above
+2. Minimum Android SDK version 21
+3. Kotlin Version 1.3.72 and above
 
 ### Installation 
 *  Clone repository with android Studio
