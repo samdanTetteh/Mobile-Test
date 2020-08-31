@@ -19,7 +19,6 @@ class Repository(private val api: Api, database: UniDatabase) {
     // Handle to database
     private val dao = database.dao()
 
-
     /**
      * Ensure single source of truth data
      * **/

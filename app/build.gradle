@@ -70,21 +70,15 @@ dependencies {
     // Truth Assertions
     testImplementation deps.truth
 
-    // Fragment Tests
-//    implementation deps.androidx.fragment
-//    debugImplementation deps.androidx.fragment_testing
-
     // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation deps.androidx.test.runner
     androidTestImplementation deps.androidx.test.rules
     testImplementation 'androidx.test:core:1.0.0'
 
     // Mockito
-    androidTestImplementation deps.mockito.core
+    testImplementation deps.mockito.core
     androidTestImplementation deps.mockito.android
     androidTestImplementation deps.androidx.testing
-
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.9'
 
     // Navigation
     implementation deps.androidx.navigation.fragment

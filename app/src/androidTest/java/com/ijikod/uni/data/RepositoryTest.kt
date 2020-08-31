@@ -5,6 +5,7 @@ import androidx.test.core.app.ApplicationProvider
 import com.ijikod.uni.data.DataSource.Api
 import com.ijikod.uni.data.Model.UniModel
 import com.ijikod.uni.data.Room.UniDatabase
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
 import org.junit.Assert.*
 import org.junit.Before
@@ -36,8 +37,11 @@ class RepositoryTest {
 
 
     @Test
-    suspend fun `check_read_data_from_api`(){
-        val uniData  = appRepository.getDataFromServer()
+     fun `check_read_data_from_api`(){
+        var uniData = listOf<UniModel>()
+        runBlocking {
+            uniData = appRepository.getDataFromServer()
+        }
         assertThat(uniData[1] , CoreMatchers.equalTo(fakeUniModel))
     }
 }

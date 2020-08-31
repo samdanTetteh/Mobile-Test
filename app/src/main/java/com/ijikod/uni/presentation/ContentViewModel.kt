@@ -1,6 +1,7 @@
 package com.ijikod.uni.presentation
 
 import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ijikod.uni.data.Model.UniModel
@@ -15,6 +16,8 @@ class ContentViewModel(val repository: Repository) : ViewModel() {
     val body = MutableLiveData<String>()
 
     val formErrors = ObservableArrayList<FormErrors>()
+
+    val isAddData = MutableLiveData<Boolean>()
 
 
     /**
@@ -49,6 +52,7 @@ class ContentViewModel(val repository: Repository) : ViewModel() {
      * **/
     fun saveData(){
         val data = selectedDataItem.value
+        if (data?.entity.isNullOrEmpty()) isAddData.value = true
         data?.let {
             it.entity = title.value.toString()
             it.description = body.value.toString()

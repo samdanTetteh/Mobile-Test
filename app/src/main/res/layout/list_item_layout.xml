@@ -13,12 +13,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="380dp">
+            android:layout_height="350dp">
 
             <ImageView
                 android:id="@+id/card_bg_img"
                 android:layout_width="wrap_content"
-                android:layout_height="220dp"
+                android:layout_height="180dp"
                 android:contentDescription="@string/item_image_txt"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -34,8 +34,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Reebok" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/details_txt"
@@ -47,12 +46,13 @@
                 android:textAlignment="textStart"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
+                android:maxLines="3"
+                android:ellipsize="end"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toTopOf="@+id/card_bg_img"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/entity_txt"
-                app:layout_constraintTop_toBottomOf="@+id/entity_txt"
-                tools:text="Head to LOOKFANTASTIC - the ultimate destination for your beauty needs!" />
+                app:layout_constraintTop_toBottomOf="@+id/entity_txt"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.ijikod.uni.ui.Fragments
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,15 +32,17 @@ class ContentFeedFragment : Fragment() {
     private lateinit var retryButton: Button
 
     private lateinit var feedViewModel: FeedViewModel
+    private lateinit var contentVM: ContentViewModel
     private lateinit var adapter: DataAdapter
     private lateinit var fab: FloatingActionButton
 
-    private var adapterList = mutableListOf<UniModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         feedViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(FeedViewModel::class.java)
+
+        contentVM = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(ContentViewModel::class.java)
 
     }
 
@@ -91,7 +94,7 @@ class ContentFeedFragment : Fragment() {
 
                 is Resource.Success -> {
                     // Setting list data to data recycler view adapter
-                    adapter.setDataSet(it.data!!)
+                    it.data?.let { dataSet -> adapter.setDataSet(dataSet) }
                     showList()
                 }
 
@@ -100,6 +103,17 @@ class ContentFeedFragment : Fragment() {
                 }
             }
         })
+
+
+        // Scroll list to the top once new data is added
+        contentVM.isAddData.observe(viewLifecycleOwner, Observer {
+            when(it){
+                true -> {
+                    Handler().postDelayed({ recyclerView.smoothScrollToPosition(0) }, 1000)
+                }
+            }
+        })
+
     }
 
     // Show loading on screen
@@ -127,8 +141,8 @@ class ContentFeedFragment : Fragment() {
      * Navigate to content screen with selected [UniModel] data item
      */
     private fun showContentScreen(dataItem: UniModel){
-        val contentVM = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(ContentViewModel::class.java)
         contentVM.setSelectedData(dataItem)
+        contentVM.isAddData.value = false
         val action = ContentFeedFragmentDirections.actionContentFeedFragmentToContentFragment()
         findNavController().navigate(action)
     }

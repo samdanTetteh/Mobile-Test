@@ -26,6 +26,9 @@ class DataAdapter(val showContent : (dataItem : UniModel) -> Unit) : RecyclerVie
         }
     }
 
+    /**
+     * Set items to adapter and notify data has changed
+     * **/
     fun setDataSet(listData : List<UniModel>){
         data = listData
         notifyDataSetChanged()
