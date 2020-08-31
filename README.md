@@ -1,6 +1,6 @@
 ## Uni - Mobile Test
 *  App initially retrieves data from local **.json** file in **Assets** folder.
-*  List items on Content Feed Screen are clickable view details on the Add Content Screen.
+*  List items on Content Feed Screen are clickable to view details on the Add Content Screen.
 *  Click on the floating action button on the Content Feed Screen to display the Add Content Screen to add a new list item.
 *  Newly added items can be seen at the top of the list on Content Feed Screen once saved or uploaded from Add Content Screen.
 
