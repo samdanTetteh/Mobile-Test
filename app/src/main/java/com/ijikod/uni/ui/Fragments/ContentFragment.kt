@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ijikod.uni.R
 import com.ijikod.uni.Utilities.hideKeyboard
-import com.ijikod.uni.Utilities.showKeyboard
 import com.ijikod.uni.databinding.ContentLayoutBinding
 import com.ijikod.uni.di.Injection
 import com.ijikod.uni.presentation.ContentViewModel
@@ -31,6 +30,16 @@ class ContentFragment: Fragment() {
         setHasOptionsMenu(true)
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding : ContentLayoutBinding = DataBindingUtil.inflate(inflater, R.layout.content_layout, container,false)
+        binding.vm = contentViewModel
+        return binding.root
+    }
+
     override fun onPause() {
         super.onPause()
 
@@ -40,27 +49,14 @@ class ContentFragment: Fragment() {
 
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val binding : ContentLayoutBinding = DataBindingUtil.inflate(inflater, R.layout.content_layout, container,false)
-        binding.vm = contentViewModel
-
-        val editText = binding.titleEntityTxt
-        editText.requestFocus()
-        editText.showKeyboard()
-        return binding.root
-    }
-
-
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.save_data -> {
                 if (contentViewModel.isFormValid()){
                     contentViewModel.saveData()
+
+                    // Hide keyboard is still displaying
+                    hideKeyboard()
 
                     // navigate back to feed screen
                     findNavController().navigateUp()

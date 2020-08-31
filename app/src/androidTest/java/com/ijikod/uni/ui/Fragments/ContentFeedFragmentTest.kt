@@ -32,7 +32,7 @@ class ContentFeedFragmentTest{
     @Test
     fun `check_recycler_view_exists_and_has_items`(){
         //this test will fail until the exact item count of the list is known and can be asserted
-        Espresso.onView(withId(R.id.data_list)).check(CustomAssertions.hasItemCount(11))
+        Espresso.onView(withId(R.id.data_list)).check(CustomAssertions.hasItemCount(9))
     }
 
 
