@@ -24,4 +24,5 @@
 
 
 ### Caveats
+*  App initially retrieves data from local **.json** file in **Assets** folder 
 *  Images used in the app are intentional to follow request not to include company name
