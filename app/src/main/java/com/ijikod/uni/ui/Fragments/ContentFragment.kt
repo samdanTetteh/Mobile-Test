@@ -1,10 +1,14 @@
 package com.ijikod.uni.ui.Fragments
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +18,7 @@ import com.ijikod.uni.Utilities.hideKeyboard
 import com.ijikod.uni.databinding.ContentLayoutBinding
 import com.ijikod.uni.di.Injection
 import com.ijikod.uni.presentation.ContentViewModel
+
 
 /** Fragment to show content data **/
 class ContentFragment: Fragment() {
@@ -37,7 +42,6 @@ class ContentFragment: Fragment() {
     ): View? {
         val binding : ContentLayoutBinding = DataBindingUtil.inflate(inflater, R.layout.content_layout, container,false)
         binding.vm = contentViewModel
-
         return binding.root
     }
 
@@ -56,8 +60,8 @@ class ContentFragment: Fragment() {
                     findNavController().navigateUp()
                 }
             }
-
         }
         return true
     }
+
 }

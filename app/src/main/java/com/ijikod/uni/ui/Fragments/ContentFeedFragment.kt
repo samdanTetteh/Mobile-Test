@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ijikod.uni.Utilities.Resource
+import com.ijikod.uni.Utilities.hideKeyboard
 import com.ijikod.uni.data.Model.UniModel
 import com.ijikod.uni.databinding.ContentFeedFragmentLayoutBinding
 import com.ijikod.uni.di.Injection

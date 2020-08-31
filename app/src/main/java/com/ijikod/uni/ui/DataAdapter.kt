@@ -3,6 +3,8 @@ package com.ijikod.uni.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.ijikod.uni.R
 import com.ijikod.uni.data.Model.UniModel
 import com.ijikod.uni.databinding.ListItemLayoutBinding
 
@@ -42,6 +44,7 @@ class DataAdapter(val showContent : (dataItem : UniModel) -> Unit) : RecyclerVie
         fun binding(dataItem: UniModel){
             entityTxt.text = dataItem.entity
             descpTxt.text = dataItem.description
+            Glide.with(bgImage.context).load(bgImage.context.getDrawable(R.drawable.uni)).into(bgImage)
 
             //Navigate to details screen
             this.itemView.setOnClickListener {
