@@ -29,6 +29,9 @@ class UniDatabaseTest{
         entity = "Reebok"
     )
 
+    /**
+     * Create [UniDatabase] and initialise [UniDao]
+     ***/
     @Before
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
@@ -37,6 +40,10 @@ class UniDatabaseTest{
         dao = db.dao()
     }
 
+
+    /**
+     * Check saving of data to [UniDatabase]
+     * **/
     @Test
     @Throws(Exception::class)
      fun `check_saved_data`() {

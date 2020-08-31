@@ -36,8 +36,6 @@ class ContentFeedFragment : Fragment() {
     private lateinit var adapter: DataAdapter
     private lateinit var fab: FloatingActionButton
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         feedViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(FeedViewModel::class.java)
@@ -45,7 +43,6 @@ class ContentFeedFragment : Fragment() {
         contentVM = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(ContentViewModel::class.java)
 
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
