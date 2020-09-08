@@ -26,12 +26,13 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportFragmentManager.fragmentFactory = FragmentFactory()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
 
-        supportFragmentManager.fragmentFactory = FragmentFactory()
+
 
         // Nav controller navigation listener
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->

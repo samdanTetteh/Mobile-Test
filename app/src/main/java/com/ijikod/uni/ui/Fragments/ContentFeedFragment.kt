@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ijikod.uni.Utilities.Resource
-import com.ijikod.uni.Utilities.hideKeyboard
 import com.ijikod.uni.data.Model.UniModel
 import com.ijikod.uni.databinding.ContentFeedFragmentLayoutBinding
 import com.ijikod.uni.di.Injection
@@ -38,10 +37,18 @@ class ContentFeedFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        feedViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(FeedViewModel::class.java)
+        feedViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModel(requireActivity())).get(FeedViewModel::class.java)
 
-        contentVM = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(ContentViewModel::class.java)
+        contentVM = ViewModelProvider(requireActivity(), Injection.provideViewModel(requireActivity())).get(ContentViewModel::class.java)
 
+
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        initSubscribers()
     }
 
     override fun onCreateView(
@@ -54,7 +61,6 @@ class ContentFeedFragment : Fragment() {
 
 
         initScreenItems(binding)
-        initSubscribers()
         return view
     }
 
@@ -82,7 +88,6 @@ class ContentFeedFragment : Fragment() {
      * Observing data changes from view model and showing in recycler view
      * **/
     private fun initSubscribers(){
-        feedViewModel.data()
         feedViewModel.data.observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading -> {
@@ -93,6 +98,7 @@ class ContentFeedFragment : Fragment() {
                     // Setting list data to data recycler view adapter
                     it.data?.let { dataSet -> adapter.setDataSet(dataSet) }
                     showList()
+
                 }
 
                 is Resource.Error -> {
@@ -111,6 +117,7 @@ class ContentFeedFragment : Fragment() {
             }
         })
 
+        feedViewModel.fetchData()
     }
 
     // Show loading on screen

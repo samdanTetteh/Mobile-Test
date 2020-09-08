@@ -14,25 +14,25 @@ import com.ijikod.uni.data.Model.UniModel
 interface UniDao {
 
     @Query("SELECT * FROM unidata ORDER BY id DESC")
-    suspend fun getAllData() :List<UniModel>
+    fun getAllData() :List<UniModel>
 
     /**
      * save single [UniModel] to database
      * [OnConflictStrategy] here will replace data if exists already
      * **/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertData(data : UniModel)
+    fun insertData(data : UniModel)
 
     /**
      * save a [List] of [UniModel] to database
      * **/
     @Insert
-    suspend fun insertAllData(data: List<UniModel>)
+    fun insertAllData(data: List<UniModel>)
 
     /**
      * Delete all [UniModel] data from database
      * **/
     @Query("Delete from UniData")
-    suspend fun deleteAll()
+     fun deleteAll()
 
 }

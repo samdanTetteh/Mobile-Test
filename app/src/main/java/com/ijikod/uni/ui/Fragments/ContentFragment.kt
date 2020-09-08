@@ -25,9 +25,10 @@ class ContentFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        contentViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModel(requireActivity())).get(ContentViewModel::class.java)
 
-        contentViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireActivity())).get(ContentViewModel::class.java)
         setHasOptionsMenu(true)
+
     }
 
     override fun onCreateView(

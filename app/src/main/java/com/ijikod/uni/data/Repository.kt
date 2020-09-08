@@ -22,21 +22,28 @@ class Repository(private val api: Api, database: UniDatabase) {
     /**
      * Ensure single source of truth data
      * **/
-    suspend fun getData(): Resource<List<UniModel>> {
-        val uniDataList = MutableLiveData<Resource<List<UniModel>>>()
-        uniDataList.postValue(Resource.Loading())
-        val data = dao.getAllData()
-         if (data.isEmpty()){
-             try {
-                 uniDataList.value = Resource.Success(getDataFromServer())
-             }catch (exception : Exception){
-                 uniDataList.value = Resource.Error("Error: ${exception.message}")
-             }
-         }else{
-                uniDataList.value = Resource.Success(data)
-         }
+     fun getData(emit : (value: Resource<List<UniModel>>) -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val uniDataList = MutableLiveData<Resource<List<UniModel>>>()
+            uniDataList.postValue(Resource.Loading())
+            val data = dao.getAllData()
+            if (data.isEmpty()){
+                try {
+                    uniDataList.postValue(Resource.Success(getDataFromServer()))
+                }catch (exception : Exception){
+                    uniDataList.postValue(Resource.Error("Error: ${exception.message}"))
+                }
+            }else{
+                uniDataList.postValue(Resource.Success(data))
+            }
 
-        return uniDataList.value!!
+            // Emit data back to function to be used.
+            CoroutineScope(Dispatchers.Main).launch {
+                emit(uniDataList.value!!)
+            }
+
+        }
+
     }
 
     /**
@@ -52,7 +59,7 @@ class Repository(private val api: Api, database: UniDatabase) {
      * Load data from json file and save data to sql database
      * **/
     @WorkerThread
-    suspend fun getDataFromServer() : List<UniModel>{
+     fun getDataFromServer() : List<UniModel>{
         val data = api.remoteData
         dao.deleteAll()
         dao.insertAllData(data)

@@ -9,8 +9,11 @@ import kotlinx.coroutines.launch
 /**
  * [ViewModel] class that serves as a bridge between view and repository
  * **/
-class FeedViewModel (val repository: Repository): ViewModel(){
+class FeedViewModel (private val repository: Repository): ViewModel(){
 
+    /**
+     * Encapsulated [MutableLiveData] hidden from UI
+     * **/
     private val _uniData = MutableLiveData<Resource<List<UniModel>>>()
 
     /**
@@ -19,16 +22,11 @@ class FeedViewModel (val repository: Repository): ViewModel(){
     val data: LiveData<Resource<List<UniModel>>> = _uniData
 
 
-    private fun fetchData(){
-        viewModelScope.launch {
-            // Making a suspend and resume database request which will main-safe
-            _uniData.value = repository.getData()
-        }
+
+     fun fetchData(){
+        // Making a suspend and resume database request which will main-safe
+           repository.getData{
+               _uniData.value = it
+          }
     }
-
-    /**
-     *  Called by the UI to load data from repository
-     * **/
-    fun data() = fetchData()
-
 }
