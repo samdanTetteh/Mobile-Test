@@ -1,13 +1,12 @@
 package com.ijikod.uni.presentation
 
-import androidx.databinding.ObservableArrayList
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ijikod.uni.businessLogic.Interactor
 import com.ijikod.uni.data.Model.UniModel
 import com.ijikod.uni.data.Repository
 
-class ContentViewModel(val repository: Repository) : ViewModel() {
+class ContentViewModel(private val repository: Repository, private val userCase: Interactor) : ViewModel() {
 
     val selectedDataItem = MutableLiveData<UniModel>()
 
@@ -15,25 +14,14 @@ class ContentViewModel(val repository: Repository) : ViewModel() {
 
     val body = MutableLiveData<String>()
 
-    val formErrors = ObservableArrayList<FormErrors>()
-
     val isAddData = MutableLiveData<Boolean>()
 
+    val formErrors = userCase.formErrors
 
-    /**
-     * Validate content form before upload
-     * **/
-    fun isFormValid(): Boolean {
-        formErrors.clear()
-        if (title.value?.isNullOrEmpty()!! || title.value?.length!! < 3) {
-            formErrors.add(FormErrors.INVALID_TITLE)
-        }
 
-        if (body.value?.isNullOrEmpty()!!){
-            formErrors.add(FormErrors.MISSING_DESC)
-        }
-        return formErrors.isEmpty()
-    }
+    fun isTitleValid(): Boolean = userCase.titleTextValidation(title.value!!)
+
+    fun isBodyValid(): Boolean = userCase.bobyTextValidation(body.value!!)
 
 
     /**
@@ -52,7 +40,10 @@ class ContentViewModel(val repository: Repository) : ViewModel() {
      * **/
     fun saveData(){
         val data = selectedDataItem.value
+
+        // Check if this is new data to be added
         if (data?.entity.isNullOrEmpty()) isAddData.value = true
+
         data?.let {
             it.entity = title.value.toString()
             it.description = body.value.toString()
@@ -62,12 +53,4 @@ class ContentViewModel(val repository: Repository) : ViewModel() {
         }
     }
 
-}
-
-/**
- * Enum class to help with content validation
- * **/
-enum class FormErrors {
-    INVALID_TITLE,
-    MISSING_DESC,
 }

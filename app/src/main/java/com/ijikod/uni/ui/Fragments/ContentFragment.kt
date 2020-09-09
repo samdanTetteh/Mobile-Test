@@ -53,7 +53,7 @@ class ContentFragment: Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.save_data -> {
-                if (contentViewModel.isFormValid()){
+                if (contentViewModel.isTitleValid() && contentViewModel.isBodyValid()){
                     contentViewModel.saveData()
 
                     // Hide keyboard is still displaying

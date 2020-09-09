@@ -10,10 +10,7 @@ import com.ijikod.uni.R
  * **/
 @BindingAdapter("app:titleErrorText")
 fun setTitleErrorMessage(view: TextInputLayout, errorMessage: String) {
-    if (errorMessage.isNotEmpty())
-        view.error = view.context.getString(R.string.title_error)
-    else
-        view.error = errorMessage
+    if (errorMessage.isNotEmpty()) view.error = view.context.getString(R.string.title_error) else view.error = errorMessage
 }
 
 
@@ -22,8 +19,5 @@ fun setTitleErrorMessage(view: TextInputLayout, errorMessage: String) {
  * **/
 @BindingAdapter("app:descErrorText")
 fun setDescErrorMessage(view: TextInputLayout, errorMessage: String) {
-    if (errorMessage.isNotEmpty())
-        view.error = view.context.getString(R.string.body_error)
-    else
-        view.error = errorMessage
+    if (errorMessage.isNotEmpty()) view.error = view.context.getString(R.string.body_error) else view.error = errorMessage
 }

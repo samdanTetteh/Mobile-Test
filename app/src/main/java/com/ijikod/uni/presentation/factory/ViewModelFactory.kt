@@ -2,6 +2,7 @@ package com.ijikod.uni.presentation.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.ijikod.uni.businessLogic.Interactor
 import com.ijikod.uni.data.Repository
 
 /**
@@ -14,7 +15,7 @@ class ViewModelFactory(private val repository: Repository) : ViewModelProvider.F
             return com.ijikod.uni.presentation.FeedViewModel(repository) as T
         }else if (modelClass.isAssignableFrom(com.ijikod.uni.presentation.ContentViewModel::class.java)){
             @Suppress("UNCHECKED_CAST")
-            return com.ijikod.uni.presentation.ContentViewModel(repository) as T
+            return com.ijikod.uni.presentation.ContentViewModel(repository, Interactor()) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
