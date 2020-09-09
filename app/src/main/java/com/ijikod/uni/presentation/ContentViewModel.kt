@@ -1,7 +1,9 @@
 package com.ijikod.uni.presentation
 
+import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ijikod.uni.businessLogic.FormErrors
 import com.ijikod.uni.businessLogic.Interactor
 import com.ijikod.uni.data.Model.UniModel
 import com.ijikod.uni.data.Repository
@@ -19,9 +21,13 @@ class ContentViewModel(private val repository: Repository, private val userCase:
     val formErrors = userCase.formErrors
 
 
-    fun isTitleValid(): Boolean = userCase.titleTextValidation(title.value!!)
-
-    fun isBodyValid(): Boolean = userCase.bobyTextValidation(body.value!!)
+    /**
+     * Valid form fields
+     * **/
+    fun isFormValid(){
+        userCase.titleTextValidation(title.value!!)
+        userCase.isBodyTextValid(body.value!!)
+    }
 
 
     /**

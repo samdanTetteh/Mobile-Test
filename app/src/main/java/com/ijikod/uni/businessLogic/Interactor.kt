@@ -15,8 +15,8 @@ class Interactor {
     /**
      * Validate content form before upload
      * **/
-    fun titleTextValidation(title : String): Boolean {
-       return when (title.isNullOrEmpty() || title.length < 3) {
+    fun titleTextValidation(title : String) {
+        when (title.isNullOrEmpty() || title.length < 3) {
             true -> {
                 formErrors.add(FormErrors.INVALID_TITLE)
             }
@@ -27,14 +27,14 @@ class Interactor {
         }
     }
 
-    fun bobyTextValidation(body: String): Boolean{
-        return when (body.isNullOrEmpty()){
+    fun isBodyTextValid(body: String){
+         when (body.isNotEmpty()){
             true -> {
-                formErrors.add(FormErrors.MISSING_DESC)
+                formErrors.remove(FormErrors.MISSING_DESC)
             }
 
             else ->  {
-                formErrors.remove(FormErrors.MISSING_DESC)
+                formErrors.add(FormErrors.MISSING_DESC)
             }
         }
     }
