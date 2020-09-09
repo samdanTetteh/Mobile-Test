@@ -15,8 +15,8 @@
 *  Make sure you are on the master branch
 
 
-### App Architecture (Model-View-View-Model)
-![MVVM Architecture](/Images/architecture.png)
+### App Architecture (Model-View-View-Model/I)
+![MVVM/I Architecture](/Images/architecture.png)
 
 
 ### Implementation Features
